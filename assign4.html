@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eric Johnson Assignment 4</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Oswald&display=swap" rel="stylesheet">
+    <link href="EricJohnsonInternetProgramming.css" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+    <h1>
+        Eric Johnson - Assignment 4
+    </h1>
+</div>
+
+<aside class="sidebar">
+    <ul>
+        <button><a href="assign1.html">Assignment 1</a></button>
+        <button class="disabled"><a>Assignment 2</a></button><!-- disabling  since we skip assign2 -->
+        <button><a href="assign3.html">Assignment 3</a></button>
+        <button><a href="assign4.html">Assignment 4</a></button>
+        <button><a href="assign5.html">Assignment 5</a></button>
+        <button><a href="assign6.html">Assignment 6</a></button>
+        <button><a href="references.html">References</a></button>
+        <button><a href="contact.html">Contact</a></button>
+    </ul>
+</aside>
+
+<div class="textblock">
+    <p><strong>Problems:</strong></p>
+    <p>Develop two Python scripts: one a server; the other a client that will use the server. You will use the
+        polynomial function module &ldquo;<u>polynomials.py&rdquo;</u>. Do not include those functions directly into
+        your server code, but import them into the server (see Additional Notes below).</p>
+    <p><strong>Server (50 points)</strong></p>
+    <p>The server will listen on a specific port number (ex. 12345). It will carry out polynomial computations using the
+        functions in the provided module. Requests are in one of two formats:</p>
+    <ul>
+        <li>Evaluate Request</li>
+        <ul>
+            <li>Request starts with &lsquo;E&rsquo;</li>
+            <li>Followed by an argument value</li>
+            <li>Followed by a single space</li>
+            <li>Followed by the coefficients of a polynomial, separated by single spaces</li>
+        </ul>
+        <li>Bisection Request</li>
+        <ul>
+            <li>Requests starts with &lsquo;S&rsquo;</li>
+            <li>Followed by &lsquo;a&rsquo;, &lsquo;b&rsquo;, polynomial, tolerance separated by single spaces</li>
+        </ul>
+    </ul>
+    <p>For example, here is a sample evaluate request:</p>
+    <p>E1.0 -945 1689 -950 230 -25 1</p>
+    <p>This is a request to evaluate the polynomial<br/> -945 + 1689x - 950x<sup>2</sup> + 230x<sup>3</sup> -
+        25x<sup>4</sup> + x<sup>5</sup><br/> at the value x = 1.0</p>
+    <p>Here is a sample bisection request:</p>
+    <p>S0 2 -945 1689 -950 230 -25 1 1e-15</p>
+    <p>This requests the use of the bisection function with a = 0, b = 2, tolerance = 1e-15 and using the same
+        polynomial as in the evaluate example.</p>
+    <p>The server will create a response to the client for each request. The first character of the response will
+        indicate the type of response:</p>
+    <ul>
+        <li>&lsquo;X&rsquo; indicates an error response. The remainder of the response is an error message</li>
+        <li>&lsquo;E&rsquo; indicates a successful response to an evaluate request. This is immediately followed by the
+            value returned by the evaluate function
+        </li>
+        <li>&lsquo;S&rsquo; indicates a successful response to a bisection request. This is immediately followed by the
+            value returned by the bisection function
+        </li>
+    </ul>
+    <p>The response to the example evaluate request would be<u><sup><a
+            href="http://ksuweb.kennesaw.edu/~bsetzer/4720su16/nanoc/output/assignments/7/#fn:interpret-request">2</a></sup></u>
+    </p>
+    <p>&nbsp;&nbsp;&nbsp; E2.2737367544323206e-13</p>
+    <p>The response to the example bisection request would be</p>
+    <p>&nbsp;&nbsp;&nbsp; S1.0000000000000004</p>
+    <p>The server should operate in a continuing manner: the server should repeatedly accept a connection, get a
+        request, send a response and close the connection to the client. In particular, only one request is handled for
+        each connection.</p>
+    <p><strong>Server Error Checking (20 points)</strong></p>
+    <p>The server should respond properly in the case of an erroneous request. Not only should the server not &lsquo;crash&rsquo;
+        but the server should send back an appropriate error response to the client.</p>
+    <p>For example, the request string</p>
+    <p>E1.0 -945xx 1689 -950 230 -25 1</p>
+    <p>should result in a response something like this:</p>
+    <p>&nbsp;&nbsp;&nbsp; Xinvalid format numeric data</p>
+    <p>Note the &lsquo;X&rsquo; that flags this as an error message.</p>
+    <p>Include error checking in the server. <strong>Also</strong> document the error checking by including a string at
+        the end of the server code that describes the errors caught. That string might look something like this (to
+        start with):</p>
+    <p>'''</p>
+    <p>Invalid numeric format</p>
+    <p>&nbsp;</p>
+    <p>Wrong number of fields in request</p>
+    <p>&nbsp;</p>
+    <p>'''</p>
+    <p><strong>Client (30 points)</strong></p>
+    <p>You are <strong>strongly urged</strong> to write small clients that will test aspects of your server as you work
+        on that. Once you are satisfied that you can send an evaluation request and get a good result and also send a
+        bisection request and get a good result then work on the client described here.</p>
+    <p>The client should define four variables at the beginning: the first, named poly with a list of numbers
+        representing the coefficients of a&nbsp; polynomial;<u><sup><a
+                href="http://ksuweb.kennesaw.edu/~bsetzer/4720su16/nanoc/output/assignments/7/#fn:not-string">3</a></sup></u>
+        another, named &lsquo;a&rsquo;, representing a value a to use in bisection; another, named b representing a
+        value b to use in bisection; another, named tol representing a tolerance value to use in bisection.</p>
+    <p>Note: in testing your client, the values assigned to these variables will be changed so make sure they are
+        evident.</p>
+    <p>The client should first make a request to the server for a bisection. Provide the data defined in the variables
+        just described. Display the value returned.</p>
+    <p>The result from the first request should be used as the x value in another request to the server to evaluate the
+        polynomial (defined in the variable described above).<br/> The result of the evaluation should be displayed.
+        This value should be very close to 0.</p>
+    <p><strong>Additional notes:</strong></p>
+    <ol>
+        <li>The client will do not numeric computations at all, it is just sending and receiving data. The most it does
+            is get substrings and concatenate strings.
+        </li>
+        <li>The result is in scientific notation. The value of the result is very near 0.</li>
+        <li>This value <em>should not be string</em>, it should be a list of numeric values.</li>
+    </ol>
+    <p><strong>&nbsp;</strong></p>
+    <p><strong>Test Code:</strong></p>
+    <p><strong>Messages Sent by Client: </strong></p>
+    <p>testing_strings = ["E1.0 -945 1689 -950 230 -25 1",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "S0
+        2 -945 1689 -950 230 -25 1 1e-15",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        "G4.1 0 0",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "4 1
+        0",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        "E1.0",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        "S1.0",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "S0
+        2 -945 1689 -950 230 -25 1 -1e-15",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Not
+        a number",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "S0
+        2 -945 1689 -950 230 -25 1 0",</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "S0
+        2 -945 1689 -950 230 G 1 1e-15"]</p>
+    <p><strong>Response from Server: </strong></p>
+    <p>Sending request "E1.0 -945 1689 -950 230 -25 1"</p>
+    <p>Received response E0.0</p>
+    <p>&nbsp;</p>
+    <p>Sending request "S0 2 -945 1689 -950 230 -25 1 1e-15"</p>
+    <p>Received response S1.0000000000000004</p>
+    <p>&nbsp;</p>
+    <p>Sending request "G4.1 0 0"</p>
+    <p>Received response XIncorrect command type</p>
+    <p>&nbsp;</p>
+    <p>Sending request "4 1 0"</p>
+    <p>Received response Xcould not convert string to float:&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>Sending request "E1.0"</p>
+    <p>Received response XToo few arguments</p>
+    <p>&nbsp;</p>
+    <p>Sending request "S1.0"</p>
+    <p>Received response XToo few arguments</p>
+    <p>&nbsp;</p>
+    <p>Sending request "S0 2 -945 1689 -950 230 -25 1 -1e-15"</p>
+    <p>Received response XInvalid tolerance</p>
+    <p>&nbsp;</p>
+    <p>Sending request "Not a number"</p>
+    <p>Received response Xcould not convert string to float: 'ot'</p>
+    <p>&nbsp;</p>
+    <p>Sending request "S0 2 -945 1689 -950 230 -25 1 0"</p>
+    <p>Received response XInvalid tolerance</p>
+    <p>&nbsp;</p>
+    <p>Sending request "S0 2 -945 1689 -950 230 G 1 1e-15"</p>
+    <p>Received response Xcould not convert string to float: 'G'</p>
+    <p><strong>&nbsp;</strong></p>
+    <p><strong>Submitting the Assignment</strong></p>
+    <p>The assignment should have two scripts: one for the server, one for the client. The assignment should include the
+        polynomials module.</p>
+    <p><strong>&nbsp;</strong></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+
+</div>
+
+<div class="footer">
+    <h4>
+        Copyright &copy; 2019 Eric Johnson - All rights reserved
+    </h4>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eric Johnson Assignment 3</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Oswald&display=swap" rel="stylesheet">
+    <link href="EricJohnsonInternetProgramming.css" rel="stylesheet">
+    <script src="assign3.js" type="text/javascript"></script>
+</head>
+<body onload="ejAddCell()">
+
+<div class="header">
+    <h1>
+        Eric Johnson - Assignment 3
+    </h1>
+</div>
+
+<aside class="sidebar">
+    <ul>
+        <button><a href="assign1.html">Assignment 1</a></button>
+        <button class="disabled"><a>Assignment 2</a></button><!-- disabling  since we skip assign2 -->
+        <button><a href="assign3.html">Assignment 3</a></button>
+        <button><a href="assign4.html">Assignment 4</a></button>
+        <button><a href="assign5.html">Assignment 5</a></button>
+        <button><a href="assign6.html">Assignment 6</a></button>
+        <button><a href="references.html">References</a></button>
+        <button><a href="contact.html">Contact</a></button>
+    </ul>
+</aside>
+
+<div class="textblock">
+    <u>Problems:</u>
+    <br>
+    Develop a Javascript application that allows the user to enter strings into a variable number of input widgets. As a
+    string is entered by the user its length is automatically displayed next to the input widget. Buttons are provided
+    to control the interface and to provide some functionality.
+    <ul>
+        <li> Clicking “Add Cell” button will add another input widget.
+        <li> Clicking “Remove Cell” button will remove an input widget, always leaving at least one input widget.
+        <li> Clicking “Sort” button will cause the visible strings to be sorted.
+        <li> Make a button named ‘Assignment 3’ on your web page (Assignment 1), and let clicking the button display the
+            result of this assignment.
+    </ul>
+    Organize the application in three files: the HTML file that is the user interface to the application; a file with
+    most
+    of the Javascript code; a file with the styling rules.
+
+</div>
+
+<div class="assignmentBox">
+    <table id="assign3Table">
+        <tr>
+            <th>Input</th>
+            <th>Length</th>
+        </tr>
+
+    </table>
+    <br>
+    <input type="button" onclick="ejAddCell()" value="Add Cell">
+    <input type="button" onclick="ejRemoveCell()" value="Remove Cell">
+    <input type="button" onclick="ejSort()" value="Sort">
+</div>
+<div class="footer">
+    <h4>
+        Copyright &copy; 2019 Eric Johnson - All rights reserved
+    </h4>
+</div>
+</body>
+</html>

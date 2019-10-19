@@ -1,0 +1,94 @@
+body {
+    background-color: lightgray
+}
+
+.header {
+    background-color: rebeccapurple;
+    width: 100%;
+    padding: 1px;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Oswald', sans-serif;
+}
+
+.footer {
+    background-color: rebeccapurple;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+h4 {
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+
+.sidebar {
+    float: left;
+    width: 350px;
+    position: relative;
+    top: 20px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.sidebar button {
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 90%;
+    display: block;
+    background-color: white;
+    border-color: rebeccapurple;
+    border-radius: 12px;
+    margin-bottom: 2px;
+}
+
+.sidebar a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 120%;
+    color: rebeccapurple;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.textblock {
+    width: 60%;
+    padding: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+.assignmentBox {
+    background-color: #E6D5FA;
+    margin: auto;
+    width: 40%;
+    border: solid 1px black;
+    padding: 20px;
+    overflow: auto;
+}
+
+.assignmentBox table {
+    counter-reset: rowNumber;
+}
+
+.assignmentBox table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+.assignmentBox table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}

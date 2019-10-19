@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eric Johnson Assignment 5</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Oswald&display=swap" rel="stylesheet">
+    <link href="EricJohnsonInternetProgramming.css" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+    <h1>
+        Eric Johnson - Assignment 5
+    </h1>
+</div>
+
+<aside class="sidebar">
+    <ul>
+        <button><a href="assign1.html">Assignment 1</a></button>
+        <button class="disabled"><a>Assignment 2</a></button><!-- disabling  since we skip assign2 -->
+        <button><a href="assign3.html">Assignment 3</a></button>
+        <button><a href="assign4.html">Assignment 4</a></button>
+        <button><a href="assign5.html">Assignment 5</a></button>
+        <button><a href="assign6.html">Assignment 6</a></button>
+        <button><a href="references.html">References</a></button>
+        <button><a href="contact.html">Contact</a></button>
+    </ul>
+</aside>
+
+<div class="textblock">
+    <p><strong>Problems:</strong></p>
+    <p>Develop a Python script that will get the current weather data for a particular zip code and then print out some
+        of that data in a table. The site <u><a href="http://openweathermap.org/">OpenWeatherMap</a></u> provides a
+        simple REST API to get weather data.&nbsp; Use the zip code assigned below.</p>
+    <p>For the zip code 30144, the output would be:</p>
+    <p><pre>Name:                        KSU</pre></p>
+    <p><pre>Current Temperature:         64.5 degrees Fahrenheit</pre></p>
+    <p><pre>Atmospheric Pressure:        992.52 hPa</pre></p>
+    <p><pre>Wind Speed:                  10.6 mph</pre></p>
+    <p><pre>Wind Direction:              289.5</pre></p>
+    <p><pre>Time of Report:              2017-03-10 11:13:24</pre></p>
+    <p>To be able to carry out this assignment you will need to register for a free account with <u><a
+            href="http://openweathermap.org/">OpenWeatherMap</a></u>. You will provide an <strong>id</strong> (username)
+        when registering. Once you have registered, you will receive an <strong>APIID</strong>, essentially your
+        password for using the service.</p>
+    <p>The <u><a href="http://openweathermap.org/current">current weather data API page</a></u> tells you how to create
+        a request for the current weather at a particular zip code. Information on the page tells the structure of the
+        data returned. The <u><a href="http://openweathermap.org/appid">How to start page</a></u> tells how to include
+        the APIID and id in a request. Unless you care to convert from Kelvin to degrees Fahrenheit and convert from
+        kilometers per hour to miles per hour in your script, be sure to request &lsquo;imperial&rsquo; units from the
+        server.</p>
+    <p>The data you get back will be encoded as JSON. You will need to decode it to access the information contained in
+        the response.</p>
+    <p>Use the datetime class in the datetime package from the standard library to convert the time stamp included in
+        the data to readable form. The value included in the data is the number of seconds since the epoch (standard
+        Unix timestamp). The displayed value above is the default display of a datetime object created from the raw
+        timestamp.</p>
+    <p><strong>Script Structure Requirements</strong></p>
+    <p><strong>Please pay attention to these!</strong> These particular requirements are included so that the instructor
+        can test your script using the instructor&rsquo;s account.</p>
+    <p>At the beginning of your script assign values to variables user_id and user_apiid. These will be strings with the
+        values of your id and apiid. Do not include your id or your apiid values directly in your code, use the
+        variables instead. When your program is tested, the instructor&rsquo;s values will be substituted.</p>
+    <p><strong>Submitting the Assignment</strong></p>
+    <p>Erase the value of the variable user_apiid before submitting your assignment. The value will be replaced for
+        testing.</p>
+    <p>&nbsp;</p>
+</div>
+
+<div class="footer">
+    <h4>
+        Copyright &copy; 2019 Eric Johnson - All rights reserved
+    </h4>
+</div>
+</body>
+</html>
